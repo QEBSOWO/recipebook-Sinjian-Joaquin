@@ -1,0 +1,21 @@
+<!-- tasks/templates/tasks/task_list.html -->
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}{% endblock %}
+{% block content %}
+
+
+
+<ol>
+    {% for recipe in recipes %}
+    <li> {{recipe.name}} </li>
+    <ul>
+        {% for ingredient in ingredients %}
+        <li> {{ingredient.name}} : {{ingredient.quantity}} </li>
+        {% endfor %}
+    </ul>
+    {% endfor %}
+</ol>
+    
+
+{% endblock %}

@@ -4,5 +4,11 @@
 {% block title %}Recipes{% endblock %}
 {% block content %}
 
+<ul>
+    {% for ingredient in ingredients %}
+    <li> {{ingredient.name}} : {{ingredient.quantity}} </li>
+    {% endfor %}
+        
+</ul>
     
 {% endblock %}

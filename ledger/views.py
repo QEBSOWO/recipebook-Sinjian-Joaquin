@@ -134,7 +134,7 @@ def recipes_view(request):
     print(request)
 
     return render(request, "recipes.html", recipes)
-"""
+
 def recipes_1_view(request):
     print(request)
 
@@ -144,4 +144,3 @@ def recipes_2_view(request):
     print(request)
 
     return render(request, "2.html", recipe2)
-"""

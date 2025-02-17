@@ -1,4 +1,4 @@
-<!-- tasks/templates/tasks/task_list.html -->
+<!-- tasks/templates/b.html -->
 {% extends 'base.html' %}
 {% load static %}
 {% block title %}{% endblock %}
@@ -8,12 +8,7 @@
 
 <ol>
     {% for recipe in recipes %}
-    <li> {{recipe.name}} </li>
-    <ul>
-        {% for ingredient in ingredients %}
-        <li> {{ingredient.name}} : {{ingredient.quantity}} </li>
-        {% endfor %}
-    </ul>
+    <li><a href ={{recipe.link}}>{{recipe.name}}</a></li>
     {% endfor %}
 </ol>
     

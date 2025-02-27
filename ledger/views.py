@@ -1,8 +1,12 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from django.views.generic.list import ListView
+
+from .models import Ingredient, Recipe, RecipeIngredient
 
 # Create your views here.
 
+'''
 recipe1 = {
     "name": "Recipe 1",
     "ingredients": [
@@ -129,18 +133,30 @@ recipes = {
         }
     ]
 }
+'''
 
-def recipes_view(request):
+def recipe_list_view(request):
     print(request)
 
-    return render(request, "recipes.html", recipes)
+    recipes = Recipe.objects.all()
+    ingredients = Ingredient.objects.all()
 
-def recipes_1_view(request):
+    ctx = {
+        "Recipes": recipes,
+        "Ingredients": ingredients
+    }
+
+    return render(request, "recipe_list.html", ctx)
+
+def recipe_detail_view(request, thing):
     print(request)
 
-    return render(request, "1.html", recipe1)
+    recipes = Recipe.objects.all()
+    ingredients = Ingredient.objects.all()
 
-def recipes_2_view(request):
-    print(request)
+    ctx = {
+        "Recipes": recipes,
+        "Ingredients": ingredients
+    }
 
-    return render(request, "2.html", recipe2)
+    return render(request, "recipe_detail.html", ctx)

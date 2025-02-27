@@ -148,15 +148,13 @@ def recipe_list_view(request):
 
     return render(request, "recipe_list.html", ctx)
 
-def recipe_detail_view(request, thing):
+def recipe_detail_view(request, pk):
     print(request)
 
-    recipes = Recipe.objects.all()
-    ingredients = Ingredient.objects.all()
+    recipe = Recipe.objects.get(pk = pk)
 
     ctx = {
-        "Recipes": recipes,
-        "Ingredients": ingredients
+        "Recipe": recipe,
     }
 
     return render(request, "recipe_detail.html", ctx)

@@ -11,7 +11,7 @@ from .models import Ingredient, Recipe, RecipeIngredient
 class recipe_list_view(ListView):
 
     model = Recipe
-    template_name = 'recipe_list'
+    template_name = 'recipe_list.html'
 
 
 class recipe_detail_view(LoginRequiredMixin, DetailView):

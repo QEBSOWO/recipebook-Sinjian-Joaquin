@@ -5,12 +5,14 @@
 {% block content %}
 
 
-
+{% if user.is_authenticated %}
 <ol>
     {% for recipe in Recipes %}
     <li><a href ={{recipe.get_absolute_url}}>{{recipe.name}}</a></li>
     {% endfor %}
 </ol>
+{% endif %}
+
     
 
 {% endblock %}

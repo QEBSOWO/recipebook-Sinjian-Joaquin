@@ -30,3 +30,18 @@ def recipe_detail_view(request, pk):
     }
 
     return render(request, "recipe_detail.html", ctx)
+
+@login_required
+def recipe_add_view(request):
+    recipes = Recipe.objects.all()
+    ingredients = Ingredient.objects.all()
+    ctx = { "Recipies": recipes, "Ingredients": ingredients }
+    if(request.method == "POST"):
+        r = Recipe()
+        r.name = request.POST.get('task_name')
+        r.due_date = request.POST.get('task_due')
+        r.taskgroup = TaskGroup.objects.get(pk=request.POST.get('taskgroup'))
+        r.save()
+        return render(request, 'task_list.html', ctx)
+    else:
+        return render(request, 'task_list.html', ctx)

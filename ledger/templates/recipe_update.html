@@ -7,10 +7,12 @@
     <link rel="stylesheet" href="{% static 'css/main.css' %}" type="text/css">
 </head>
 
-<form method="POST">
+<form method="POST" enctype="multipart/form-data">
     {% csrf_token %}
     {{ Form.as_p }}
     <input type="submit" value="Submit">
 </form>
+
+<p><a href="{% url 'ledger:recipe_list' %}">Return to Recipe</a></p>
 
 {% endblock %}

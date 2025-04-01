@@ -15,5 +15,9 @@
     {% endfor %}
         
 </ul>
+
+{% for image in Recipe.images.all %}
+    <img src="{{ image.image.url }}" alt="{{ image.description }}">
+{% endfor %}
     
 {% endblock %}

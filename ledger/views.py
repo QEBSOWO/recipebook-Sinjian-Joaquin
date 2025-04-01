@@ -1,8 +1,10 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 
 from .models import Ingredient, Recipe, RecipeIngredient
+
+from .forms import RecipeForm, RecipeImageForm
 
 # Create your views here.
 
@@ -33,15 +35,20 @@ def recipe_detail_view(request, pk):
 
 @login_required
 def recipe_add_view(request):
+    form = RecipeForm()
+    if request.method == 'POST':
+        form = RecipeForm(request.POST)
+        if form.is_valid():
+            recipe = form.save()
+            return redirect('recipe_detail', pk=2)
+        
     recipes = Recipe.objects.all()
     ingredients = Ingredient.objects.all()
-    ctx = { "Recipies": recipes, "Ingredients": ingredients }
-    if(request.method == "POST"):
-        r = Recipe()
-        r.name = request.POST.get('task_name')
-        r.due_date = request.POST.get('task_due')
-        r.taskgroup = TaskGroup.objects.get(pk=request.POST.get('taskgroup'))
-        r.save()
-        return render(request, 'task_list.html', ctx)
-    else:
-        return render(request, 'task_list.html', ctx)
+
+    ctx = {
+        "Recipes": recipes,
+        "Ingredients": ingredients,
+        "Form": form
+    }
+
+    return render(request, 'recipe_add.html', ctx)
